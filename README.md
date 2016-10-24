@@ -1,1 +1,1 @@
-This repository contains example programs that demonstrate how to use GraalVM.
+This repository contains example programs that demonstrate use of GraalVM.
