@@ -1,4 +1,5 @@
-# graal-weather-predictor
+# Weather Predictor Application
+
 This is a demonstration of polyglot capabilities of GraalVM showing
 how objects and functions can be shared among different languages.
 
