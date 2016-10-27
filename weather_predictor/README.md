@@ -1,12 +1,12 @@
 # Weather Predictor Application
 
-This is a demonstration of polyglot capabilities of GraalVM showing
+This is a demonstration of GraalVM's polyglot capabilities showing
 how objects and functions can be shared among different languages.
 
-The resulting applications is a simple REST service predicting temperature in
+The application is a simple REST service predicting temperature in
 a given city. The predictor uses a model constructed by applying linear regression
-to a data set consisting of temperatures in selected cities expressed as couples 
-`(latitude, temperature)`. The temperatures are retrieved in the Ruby part of the application
+to a data set consisting of temperatures in selected cities expressed as
+`(latitude, temperature)` tuples. The temperatures are retrieved in the Ruby part of the application
 via a [gem](https://rubygems.org/gems/openweather2/versions/0.1.8) wrapping [OpenWeatherMap API](http://openweathermap.org) service,
 while the corresponding latitudes are determined in the R module through the [maps](https://cran.r-project.org/web/packages/maps/maps.pdf) package.
 
@@ -25,7 +25,7 @@ the city's name, the real and the predicted temperature, such as
 
 ####Installing GraalVM
 
-In order to run the demonstration, the latest GraalVM must be installed. It can be
+In order to run the demonstration, GraalVM 0.18+ must be installed. It can be
 downloaded from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
 
 ####Installing OpenWeather gem
@@ -44,7 +44,7 @@ directory in the `INSTALLATION DIRECTORY` property:
 gem environment
 ```
 
-The path to the OpenWeather gem is specified in the `-I` option as a part of the `RUBYOPT` environment
+The path to the OpenWeather gem is specified with the `-I` option as a part of the `RUBYOPT` environment
 variable when running the application. The path is constructed as a concatenation of the
 gems installation directory and `/gems/openweather2-<version>/lib`.
 
