@@ -30,4 +30,4 @@ var server = http.createServer(function (inp, out) {
 	var cityName = inp.url.substring(1);
 	out.end(jsonify(cityName, realTemp(cityName), predictTemp(cityName)));
 });
-server.listen(8080);
+server.listen(12836);

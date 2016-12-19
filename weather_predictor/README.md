@@ -19,7 +19,7 @@ The predictor service is exposed in the JavaScript module of the application, wh
 designed as a simple [Node.js](https://nodejs.org/en/) server. This module is logically divided into three stages. First,
 the Ruby module is loaded to initialize the OpenWeather service. Then the R module is loaded
 to build the prediction model. And finally, the server is launched to accept queries in
-the form `http://localhost:8080/<city>`. The reply to this query is a JSON object carrying
+the form `http://localhost:12836/<city>`. The reply to this query is a JSON object carrying
 the city's name, the real and the predicted temperature, such as
 `{"city":"Kladno","real":6.82,"predicted":14.017807794947569}`.
 
@@ -82,7 +82,7 @@ RUBYOPT='-I /Library/Ruby/Gems/2.0.0/gems/openweather2-0.1.8/lib' ../graalvm-0.1
 Once the server is running, a query can be issued as shown below:
 
 ```
-curl http://localhost:8080/Kladno
+curl http://localhost:12836/Kladno
 ```
 
 The reply should look like this:

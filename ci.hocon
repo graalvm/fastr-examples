@@ -2,14 +2,15 @@ graal-vm-release: {
   downloads: {
     GRAALVM_DIR: {
       name: graalvm-release,
-      version: "0.17",
+      version: "0.18",
       platformspecific: true
     }
   }
   environment: {
     GRAALVM_BIN: "$GRAALVM_DIR/bin/java"
     HOST_VM: server,
-    HOST_VM_CONFIG: graal-vm
+    HOST_VM_CONFIG: graal-vm,
+    OPEN_WEATHER_API_KEY: "dd7073d18e3085d0300b6678615d904d"
   }
 }
 
@@ -19,8 +20,7 @@ builds = [
     capabilities : [linux, amd64],
     targets : [gate],
     run : [
-      ["./weather_predictor/install.sh"],
-      ["./weather_predictor/run.sh"],
+      ["./testWeatherPredictor.sh"]
     ],
   },
 ]
