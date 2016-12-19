@@ -19,6 +19,7 @@ builds = [
     capabilities : [linux, amd64],
     targets : [gate],
     run : [
+      ["./weather_predictor/install.sh"],
       ["./weather_predictor/run.sh"],
     ],
   },

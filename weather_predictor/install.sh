@@ -2,7 +2,8 @@
 
 CRAN_MIRROR=http://cran.us.r-project.org
 
-sudo gem install openweather2
+yum install rubygems
+gem install openweather2
 echo "Gem installation directory:"
 gem environment | grep "INSTALLATION DIRECTORY"
 
