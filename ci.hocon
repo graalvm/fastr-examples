@@ -24,7 +24,7 @@ builds = [
     capabilities : [linux, amd64],
     targets : [gate],
     run : [
-      ["./testWeatherPredictor.sh"]
+      ["./build.sh"]
     ],
   },
   ${graal-vm-release} {
@@ -32,7 +32,7 @@ builds = [
     capabilities : [darwin, amd64],
     targets : [gate],
     run : [
-      ["./testWeatherPredictor.sh"]
+      ["./build.sh"]
     ],
   },
 ]
