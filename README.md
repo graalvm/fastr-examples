@@ -15,3 +15,7 @@ A collection of examples and use-cases for GraalVM.
 
 All GraalVM examples are licensed under the [Universal Permissive License (UPL)](http://opensource.org/licenses/UPL).
 
+## How to run
+
+Download the latest GraalVM and set environment variable GRAAL_VM to its location on your system, 
+then follow instructions in README.md file from example of your choice.
