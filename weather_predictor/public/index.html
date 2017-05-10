@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="GraalVM Weather Predictor Demo">
+    <meta name="author" content="Oracle Labs">
+    <title>GraalVM Weather Predictor Demo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body style="padding-top: 54px">
+    <nav class="navbar fixed-top navbar-inverse bg-inverse">
+        <div class="container">
+            <a class="navbar-brand" href="#">Oracle Labs: GraalVM Weather Predictor Demo</a>
+        </div>
+    </nav>
+    <div class="container" style="padding-top: 2em">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 text-center">
+                <h4>Linear regression model generated in R.</h4>
+                <div id='plot'>
+                </div>
+                <div class="sk-circle" id='plot-spinner'>
+                  <div class="sk-circle1 sk-child"></div>
+                  <div class="sk-circle2 sk-child"></div>
+                  <div class="sk-circle3 sk-child"></div>
+                  <div class="sk-circle4 sk-child"></div>
+                  <div class="sk-circle5 sk-child"></div>
+                  <div class="sk-circle6 sk-child"></div>
+                  <div class="sk-circle7 sk-child"></div>
+                  <div class="sk-circle8 sk-child"></div>
+                  <div class="sk-circle9 sk-child"></div>
+                  <div class="sk-circle10 sk-child"></div>
+                  <div class="sk-circle11 sk-child"></div>
+                  <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 text-center">
+                <div>
+                <form class="form-inline">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="cityName" placeholder="Enter city name">
+                  </div>
+                  <button type="submit" class="btn btn-default" style='margin-left:1em' id='predict'>Predict!</button>
+                </form>
+                </div>
+                <div id='not-found' style="display:none" class='result'>
+                  <p>This city was not found, try another.</p>
+                </div>
+                <div id='prediction' style="display:none;" class='result'>
+                  <p><span width='10em'>Predicted: </span><span id='result-predicted'></span>°C</p>
+                  <p><span width='10em'>Real: </span><span id='result-real'></span>°C</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function() {
+      $.get('http://localhost:12836/model-plot', function(data) {
+          $('#plot-spinner').hide();
+          $('#plot').html(data);
+      });
+      $('#predict').click(function(e) {
+          $('#not-found').hide();
+          $('#prediction').hide();
+          $.get('http://localhost:12836/predict/' + $('#cityName').val(), function(data) {
+              $('#result-predicted').text(data.predicted);
+              $('#result-real').text(data.real);
+              $('#prediction').show();
+          }).fail(function() {
+              $('#not-found').show();
+          });
+          e.preventDefault();
+          return false;
+      });
+    });
+    </script>
+</body>
+</html>

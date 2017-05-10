@@ -16,7 +16,6 @@ export GRAALVM_DIR
 cd weather_predictor
 
 ./install.sh
-./patch.sh
 ./run.sh &
 
 sleep 60
