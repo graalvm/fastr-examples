@@ -22,7 +22,7 @@ plotModel = Interop.import('plotModel');
 isCity = Interop.import('isCity');
 
 // Create the linear regression model
-var model = createModel(30)
+var model = createModel(10)
 console.log("...done")
 
 // Expressjs application:
