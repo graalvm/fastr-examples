@@ -1,2 +1,4 @@
 weather_predictor/node_modules/
 weather_predictor/openweather/
+weather_predictor/rlang/
+weather_predictor/bin/

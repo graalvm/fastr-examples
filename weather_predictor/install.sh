@@ -26,3 +26,15 @@ fi
 # Install expressjs
 echo "Running npm install"
 $GRAALVM_DIR/bin/npm install
+
+echo "Builing the Java sources"
+$(dirname "$0")/build.sh
+
+# TODO:
+# git clone https://github.com/tidyverse/rlang.git
+# cd rlang
+# git checkout a97e7fafb31e2ac8d09e57bf2fb57f782ef572ed
+# cd ..
+# $GRAALVM_DIR/bin/R CMD INSTALL ./rlang
+#
+# $GRAALVM_DIR/bin/Rscript -e "install.packages('ggplot2', repos='$CRAN_MIRROR')"

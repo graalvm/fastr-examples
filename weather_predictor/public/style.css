@@ -1,5 +1,42 @@
 .result { margin-top:2em; text-align:left; }
 
+.navbar .nav, .navbar .nav>li {
+	float: none;
+	display: inline-block;
+	*display: inline; /* ie7 fix */
+	*zoom: 1; /* hasLayout ie7 trigger */
+	vertical-align: top;
+}
+
+.navbar-inner {
+	text-align: center;
+}
+
+.fa-spin-custom, .glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
 /* ---- */
 /* CSS3 animated spinner taken from https://github.com/tobiasahlin/SpinKit/ */
 .sk-circle {
