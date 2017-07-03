@@ -59,21 +59,12 @@ $(document).ready(function() {
     };
     loadPlot();
 
-    var loadMap = function() {
-        $.get('http://localhost:12836/model-map', function(data) {
-            $('#map-spinner').hide();
-            $('#map').html(data).show();
-        });
-    };
-    loadMap();
-
     $('#regenerate').click(function(e) {
         $('.viz').hide();
         $('.viz-spinner').show();
         $('.action-button').prop('disabled', true);
         $.post('http://localhost:12836/regenerate/' + $('#model-size').val(), function() {
             loadPlot();
-            loadMap();
             $('.action-button').prop('disabled', false);
         });
         e.preventDefault();

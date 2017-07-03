@@ -8,7 +8,9 @@ a given city. The predictor uses a model constructed by applying linear regressi
 to a data set consisting of temperatures in selected cities expressed as
 `(latitude, temperature)` tuples. The temperatures are retrieved in the Ruby part of the application
 via a [gem](https://rubygems.org/gems/openweather2/versions/0.1.8) wrapping [OpenWeatherMap API](http://openweathermap.org) service,
-while the corresponding latitudes are determined in the R module through the [maps](https://cran.r-project.org/web/packages/maps/maps.pdf) package.
+while the corresponding latitudes and other cities data are retrieved from Java
+class that mocks a typical data access object and can be easily extended to talk
+to a real database.
 
 The regression model is also built in the R module by means of the [lm](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html) function. To predict the temperature
 in a given city the R module defines a function passing the city's latitude into the
@@ -21,13 +23,13 @@ the Ruby module is loaded to initialize the OpenWeather service. Then the R modu
 to build the prediction model. And finally, the Express.js server is launched.
 The server serves the web page UI at http://localhost:12836/ and one can directly
 query the REST API at http://localhost:12836/predict/<city>, e.g.
-http://localhost:12836/predict/Kladno. The reply to this query is a JSON object carrying
+http://localhost:12836/predict/London. The reply to this query is a JSON object carrying
 the city's real and predicted temperature, such as
-`{"city":"Kladno","real":6.82,"predicted":14.017807794947569}`.
+`{"city":"London","real":6.82,"predicted":14.017807794947569}`.
 
 ####Installation
 
-In order to run the demonstration, GraalVM 0.23+ must be installed. It can be
+In order to run the demonstration, GraalVM 0.25+ must be installed. It can be
 downloaded from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
 
 Set the environment variable `GRAALVM_DIR` to the location of GraalVM distribution

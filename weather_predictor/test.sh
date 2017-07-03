@@ -5,7 +5,7 @@ if ! curl -s --head --noproxy localhost --request GET http://localhost:12836/ind
   exit 1
 fi
 echo getting prediction for London
-if ! curl -s --head --noproxy localhost --request GET http://localhost:12836/predict/Kladno | grep "200 OK" > /dev/null; then
+if ! curl -s --head --noproxy localhost --request GET http://localhost:12836/predict/London | grep "200 OK" > /dev/null; then
   exit 2
 fi
 echo getting svg visualization

@@ -12,12 +12,6 @@ module Weather
     weather = Openweather2.get_weather(city: name, units: 'metric')
     weather.temperature
   end
-
-  # TODO: this is not working yet
-  def self.update_tempratures(cityService)
-    cities = cityService.getAll(0, 100)
-    cities.each { |x| cityService.updateTemperature(x.getId(), temperature_in_city(x.getName())) }
-  end
 end
 
 Truffle::Interop.export :weather, Weather

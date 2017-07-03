@@ -68,90 +68,63 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Visualization generated in R</div>
                     <div class="panel-body">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Linear regression</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">World map</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">
-                                <div id='plot' class='viz'>
-                                </div>
-                                <div class="sk-circle viz-spinner" id='plot-spinner'>
-                                  <div class="sk-circle1 sk-child"></div>
-                                  <div class="sk-circle2 sk-child"></div>
-                                  <div class="sk-circle3 sk-child"></div>
-                                  <div class="sk-circle4 sk-child"></div>
-                                  <div class="sk-circle5 sk-child"></div>
-                                  <div class="sk-circle6 sk-child"></div>
-                                  <div class="sk-circle7 sk-child"></div>
-                                  <div class="sk-circle8 sk-child"></div>
-                                  <div class="sk-circle9 sk-child"></div>
-                                  <div class="sk-circle10 sk-child"></div>
-                                  <div class="sk-circle11 sk-child"></div>
-                                  <div class="sk-circle12 sk-child"></div>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="profile">
-                                <div id='map' class="viz">
-                                </div>
-                                <div class="sk-circle viz-spinner" id='map-spinner'>
-                                  <div class="sk-circle1 sk-child"></div>
-                                  <div class="sk-circle2 sk-child"></div>
-                                  <div class="sk-circle3 sk-child"></div>
-                                  <div class="sk-circle4 sk-child"></div>
-                                  <div class="sk-circle5 sk-child"></div>
-                                  <div class="sk-circle6 sk-child"></div>
-                                  <div class="sk-circle7 sk-child"></div>
-                                  <div class="sk-circle8 sk-child"></div>
-                                  <div class="sk-circle9 sk-child"></div>
-                                  <div class="sk-circle10 sk-child"></div>
-                                  <div class="sk-circle11 sk-child"></div>
-                                  <div class="sk-circle12 sk-child"></div>
-                                </div>
-                            </div>
+                        <div id='plot' class='viz'>
+                        </div>
+                        <div class="sk-circle viz-spinner" id='plot-spinner'>
+                          <div class="sk-circle1 sk-child"></div>
+                          <div class="sk-circle2 sk-child"></div>
+                          <div class="sk-circle3 sk-child"></div>
+                          <div class="sk-circle4 sk-child"></div>
+                          <div class="sk-circle5 sk-child"></div>
+                          <div class="sk-circle6 sk-child"></div>
+                          <div class="sk-circle7 sk-child"></div>
+                          <div class="sk-circle8 sk-child"></div>
+                          <div class="sk-circle9 sk-child"></div>
+                          <div class="sk-circle10 sk-child"></div>
+                          <div class="sk-circle11 sk-child"></div>
+                          <div class="sk-circle12 sk-child"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12 text-center">
-                    <div class="row">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Regenerate training set</div>
-                            <div class="panel-body">
-                                <form class="form-inline">
-                                  <div class="form-group">
-                                      <label for="model-size">Training set size </label>
-                                      <select class="form-control" id="model-size">
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="40">40</option>
-                                      </select>
-                                  </div>
-                                  <button type="submit" class="btn btn-default action-button" style='margin-left:1em' id='regenerate'>Regenerate!</button>
-                                </form>
-                            </div>
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Regenerate training set</div>
+                        <div class="panel-body">
+                            <form class="form-inline">
+                              <div class="form-group">
+                                  <label for="model-size">Training set size </label>
+                                  <select class="form-control" id="model-size">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="40">40</option>
+                                  </select>
+                              </div>
+                              <button type="submit" class="btn btn-default action-button" style='margin-left:1em' id='regenerate'>Regenerate!</button>
+                            </form>
                         </div>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Prediction</div>
-                            <div class="panel-body">
-                                <div>
-                                    <form class="form-inline">
-                                      <div class="form-group">
-                                        <input type="text" class="form-control" id="cityName" placeholder="Enter city name">
-                                      </div>
-                                      <button type="submit" class="btn btn-default action-button" style='margin-left:1em' id='predict'>Predict!</button>
-                                    </form>
-                                </div>
-                                <div id='not-found' style="display:none" class='result'>
-                                    <p>This city was not found, try another.</p>
-                                </div>
-                                <div id='prediction' style="display:none;" class='result'>
-                                    <p><span width='10em'>Predicted: </span><span id='result-predicted'></span>°C</p>
-                                    <p><span width='10em'>Real: </span><span id='result-real'></span>°C</p>
-                                </div>
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Prediction</div>
+                        <div class="panel-body">
+                            <div>
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="cityName" placeholder="Enter city name">
+                                  </div>
+                                  <button type="submit" class="btn btn-default action-button" style='margin-left:1em' id='predict'>Predict!</button>
+                                </form>
+                            </div>
+                            <div id='not-found' style="display:none" class='result'>
+                                <p>This city was not found, try e.g. 'London'.</p>
+                            </div>
+                            <div id='prediction' style="display:none;" class='result'>
+                                <p><span width='10em'>Predicted: </span><span id='result-predicted'></span>°C</p>
+                                <p><span width='10em'>Real: </span><span id='result-real'></span>°C</p>
                             </div>
                         </div>
                     </div>

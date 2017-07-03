@@ -19,14 +19,11 @@ Interop.eval("application/x-r", weatherModelScript);
 createModel = Interop.import('createModel');
 predictTemp = Interop.import('do_predict');
 plotModel = Interop.import('plotModel');
-plotMap = Interop.import('plotMap');
 isCity = Interop.import('isCity');
 
 var cityService = new com.oracle.graalvm.demo.weather.CityService();
 
 var updateTemperatures = function() {
-    // TODO: implement this function in the ruby module (and optionally make only one batch request to open weather API)
-    // The problem is probably that cityService is not wrapped in TruffleObject by Graal.js -- this is fixed in the latest Graal.js
     let cities = cityService.getAll();
     for (var i = 0; i < cities.length; i++) {
         console.log("Updating temperature of " + cities[i].getName());
@@ -36,9 +33,6 @@ var updateTemperatures = function() {
 
 // Create the linear regression model
 var updateModel = function(size) {
-    // TODO: implement this function in the R module by passing cities to it and letting it invoke the getName and other methods by itself
-    // The problem is that cityService is not wrapped in TruffleObject by Graal.js -- this is fixed in the latest Graal.js
-    // Yet another problem is that support for foreign arrays in FastR is implemented only in the latest version
     var cities = cityService.getAll();
     let getName = function(i) { return cities[i-1].getName(); }
     let getLatitude = function(i) { return cities[i-1].getLatitude(); }
@@ -54,9 +48,6 @@ var express = require('express');
 var app = express();
 
 app.get('/cities', function (req, res) {
-    // TODO: use Jackson or nicer built-in JSON serialization story Java objects in JavaScript?
-    // use Jackson internally in JavaScript JSON serializer for Java objects?
-    // let people choose and plug in any JSON framework?
     let cities = cityService.getAllPaged(req.query.skip, req.query.limit);
     let jsCities = [];
     for(let i = 0; i < cities.length; ++i) {
@@ -92,7 +83,6 @@ app.post('/update-tempratures', function(req, res) {
 });
 
 app.get('/model-plot', (req, res) => res.send(plotModel(model)));
-app.get('/model-map', (req, res) => res.send(plotMap(model)));
 
 app.use(express.static(__dirname + "/public"));
 app.listen(12836, function() {

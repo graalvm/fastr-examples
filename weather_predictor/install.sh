@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CRAN_MIRROR=http://cran.us.r-project.org
+export NODE_STACK_SIZE=2000000
 
 if [ ! -d openweather ]; then
 	echo "Installing openweather gem..."
@@ -29,12 +30,3 @@ $GRAALVM_DIR/bin/npm install
 
 echo "Builing the Java sources"
 $(dirname "$0")/build.sh
-
-# TODO:
-# git clone https://github.com/tidyverse/rlang.git
-# cd rlang
-# git checkout a97e7fafb31e2ac8d09e57bf2fb57f782ef572ed
-# cd ..
-# $GRAALVM_DIR/bin/R CMD INSTALL ./rlang
-#
-# $GRAALVM_DIR/bin/Rscript -e "install.packages('ggplot2', repos='$CRAN_MIRROR')"
