@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CRAN_MIRROR=http://cran.us.r-project.org
+export NODE_STACK_SIZE=2000000
 
 if [ ! -d openweather ]; then
 	echo "Installing openweather gem..."
@@ -26,3 +27,6 @@ fi
 # Install expressjs
 echo "Running npm install"
 $GRAALVM_DIR/bin/npm install
+
+echo "Builing the Java sources"
+$(dirname "$0")/build.sh
