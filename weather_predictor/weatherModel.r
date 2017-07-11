@@ -4,13 +4,17 @@ tempInCity <- import('tempInCity')
 # The lattice library is needed for the visualization
 library(lattice)
 
-createModel <- function(size, length, getName, getLat, getLong, getTemp) {
-  idx <- sample(1:length, size)
+createModel <- function(size, cityService) {
+  # In the final version we should select only some cities:
+  # idx <- sample(1:length, size)
+  # cities <- cities[idx]
+  # ...but now even using all the cities does not work:
+  cities <- cityService$getAll()
   data <- as.data.frame(list(
-      name = sapply(idx, function(i) getName(i)),
-      lat = sapply(idx, function(i) getLat(i)),
-      long = sapply(idx, function(i) getLong(i)),
-      temp = sapply(idx, function(i) getTemp(i))))
+      name = sapply(cities, function(x) x$getName()),
+      lat = sapply(cities, function(x) x$getLat()),
+      long = sapply(cities, function(x) x$getLong()),
+      temp = sapply(cities, function(x) x$getTemp())))
   list(data=data, model=lm(temp~lat, data=data))
 }
 

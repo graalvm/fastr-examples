@@ -33,12 +33,7 @@ var updateTemperatures = function() {
 
 // Create the linear regression model
 var updateModel = function(size) {
-    var cities = cityService.getAll();
-    let getName = function(i) { return cities[i-1].getName(); }
-    let getLatitude = function(i) { return cities[i-1].getLatitude(); }
-    let getLongitude = function(i) { return cities[i-1].getLongitude(); }
-    let getTemperature = function(i) { return cities[i-1].getTemperature(); }
-    return createModel(size, cities.length, getName, getLatitude, getLongitude, getTemperature);
+    return createModel(size, cityService);
 }
 
 var model = updateModel(5);
