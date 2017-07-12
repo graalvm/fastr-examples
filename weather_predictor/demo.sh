@@ -1,4 +1,3 @@
 !/bin/bash
-export NODE_STACK_SIZE=2000000
-$GRAALVM_DIR/bin/node --jvm --jvm.Dtruffle.js.NashornJavaInterop=true --jvm.classpath=./bin --jvm.Dtruffleruby.load_paths=openweather/lib,. --inspect --agent weatherServer.js
+$GRAALVM_DIR/bin/node --jvm --jvm.Xss2m --jvm.Dtruffle.js.NashornJavaInterop=true --jvm.classpath=./bin -Dpolyglot.ruby.load_paths=openweather/lib,. --polyglot --inspect --agent weatherServer.js
 
