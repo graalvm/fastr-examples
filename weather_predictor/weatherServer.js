@@ -24,7 +24,8 @@ predictTemp = Interop.import('do_predict');
 plotModel = Interop.import('plotModel');
 isCity = Interop.import('isCity');
 
-var cityService = new com.oracle.graalvm.demo.weather.CityService();
+const cityServiceType = Java.type('com.oracle.graalvm.demo.weather.CityService');
+var cityService = new cityServiceType();
 
 var updateTemperatures = function() {
     let cities = cityService.getAll();
