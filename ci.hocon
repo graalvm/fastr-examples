@@ -26,13 +26,5 @@ builds = [
     run : [
       ["./build.sh"]
     ],
-  },
-  ${graal-vm-release} {
-    name: "weather_predictor_gate_mac"
-    capabilities : [darwin, amd64],
-    targets : [gate],
-    run : [
-      ["./build.sh"]
-    ],
-  },
+  }
 ]
