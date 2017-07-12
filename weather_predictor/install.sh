@@ -11,19 +11,6 @@ if [ ! -d openweather ]; then
 	cd ..
 fi
 
-# Install the maps and lattice packages if not installed yet
-if [ ! -d $GRAALVM_DIR/language/R/library/maps ]; then
-	echo "Installing maps package..."
-
-	$GRAALVM_DIR/bin/Rscript -e "install.packages(c('maps', 'lattice'), repos='$CRAN_MIRROR')"
-
-	FASTR_LOG=$GRAALVM_DIR/language/R/fastr_errors.log
-	if [ -f FASTR_LOG ]; then
-		echo "Dumping fastr_errors.log:"
-		cat $GRAALVM_DIR/language/R/fastr_errors.log
-	fi
-fi
-
 # Install expressjs
 echo "Running npm install"
 $GRAALVM_DIR/bin/npm install
