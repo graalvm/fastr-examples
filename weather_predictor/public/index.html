@@ -6,8 +6,8 @@
     <meta name="description" content="GraalVM Weather Predictor Demo">
     <meta name="author" content="Oracle Labs">
     <title>GraalVM Weather Predictor Demo</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="row text-center">
@@ -31,9 +31,6 @@
     </nav>
 
     <div class="container page" style="padding-top: 2em" id="database-page">
-        <div class="row">
-            <a href="#" id="refresh-temperatures" class="pull-left"><span class="glyphicon glyphicon-refresh"></span> refresh temperatures</a>
-        </div>
         <div class="row">
             <table id='cities-table' class='table table-condensed table-striped table-hover table-bordered'>
                 <thead>
@@ -120,7 +117,7 @@
                                 </form>
                             </div>
                             <div id='not-found' style="display:none" class='result'>
-                                <p>This city was not found, try e.g. 'London'.</p>
+                                <p>Either this city was not found or the server is down, try e.g. 'London'.</p>
                             </div>
                             <div id='prediction' style="display:none;" class='result'>
                                 <p><span width='10em'>Predicted: </span><span id='result-predicted'></span>°C</p>
@@ -133,13 +130,8 @@
         </div>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-      crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
