@@ -14,7 +14,7 @@ Interop.export('tempInCity', function(name) {
 });
 
 // Load the R module
-console.log("Preparing weather model... This may take a while depending on your connection");
+console.log("Preparing weather model...");
 var weatherModelScript = fs.readFileSync("weatherModel.r", "utf8");
 Interop.eval("application/x-r", weatherModelScript);
 
@@ -70,7 +70,7 @@ app.get('/cities', function (req, res) {
 app.get('/predict/:city', function (req, res) {
     var city = cityService.findByName(req.params.city);
     if (city) {
-        res.send({predicted: predictTemp(model, city.getLatitude()), real: Weather.temperature_in_city(req.params.city)});
+        res.send({predicted: predictTemp(model, city.getLatitude()), real: city.getTemperature()});
     } else {
         res.status(404).send('City not found');
     }
