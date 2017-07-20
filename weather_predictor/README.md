@@ -44,3 +44,7 @@ by running the `run.sh` script. Note: as with the installation, the `GRAALVM_DIR
 environment variable must be set to point to the GraalVM distribution.
 
 Open your browser at http://localhost:12836.
+
+Script `demo.sh` runs application without displaying exceptions to terminal. It is possible to pass in arguments to enable Chrome Inspector `--inspect` and `--inspect.Suspend=false` or monitoring Agent using `--agent`. E.g. `./demo.sh --inspect --inspect.Suspend=false --agent`
+
+Script `tools.sh` enables above mentioned tools and allows printing of exceptions to terminal.
