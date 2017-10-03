@@ -64,7 +64,7 @@ app.get('/cities', function (req, res) {
             temperature: cities[i].getTemperature()
         });
     }
-    res.send({data = jsCities, totalCount = cityService.getTotalCount()});
+    res.send({data : jsCities, totalCount : cityService.getTotalCount()});
 });
 
 app.get('/predict/:city', function (req, res) {
