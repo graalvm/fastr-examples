@@ -16,8 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.oracle.truffle.api.source.Source;
-import com.oracle.truffle.api.vm.PolyglotEngine;
+import org.graalvm.polyglot.Context;
 
 public class FastRJavaUI {
     static final class PlotParams {
@@ -101,19 +100,18 @@ public class FastRJavaUI {
     }
 
     public static void main(String[] args) throws Exception {
-        PolyglotEngine engine = PolyglotEngine.newBuilder().build();
+        Context context = Context.create("R");
         // This R function opens FastR graphics device passing it Graphics2D object,
         // then it plots the graph and closes the device
-        Source src = Source.newBuilder("library(grid); library(lattice); " +
+        String src = "library(grid); library(lattice); " +
                 "function(g, w, h, clustersCount, x, y) { " +
                 "   grDevices:::awt(w, h, g);" +
                 "   iris$cluster <- factor(kmeans(iris[, c(y, x)], clustersCount)$cluster);" +
                 "   print(xyplot(as.formula(paste0(y,'~',x)), data=iris, groups=cluster, pch=20, cex=3));" +
                 "   dev.off();" +
                 "   NULL;" +
-                "}").
-                mimeType("text/x-r").name("plot.R").build();
-        ShowPlot showPlot = engine.eval(src).as(ShowPlot.class);
+                "}";
+        ShowPlot showPlot = context.eval("R", src).asHostObject();
         javax.swing.SwingUtilities.invokeLater(() -> createAndShowGUI(showPlot));
     }
 }
