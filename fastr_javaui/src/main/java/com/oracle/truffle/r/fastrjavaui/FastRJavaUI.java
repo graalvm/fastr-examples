@@ -17,6 +17,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Value;
 
 public class FastRJavaUI {
     static final class PlotParams {
@@ -32,10 +33,10 @@ public class FastRJavaUI {
     }
 
     static final class PlotJPanel extends JPanel {
-        private final ShowPlot showPlot;
+        private final Value showPlot;
         private final Supplier<PlotParams> paramsSupplier;
 
-        PlotJPanel(ShowPlot showPlot, Supplier<PlotParams> paramsSupplier) {
+        PlotJPanel(Value showPlot, Supplier<PlotParams> paramsSupplier) {
             this.showPlot = showPlot;
             this.paramsSupplier = paramsSupplier;
         }
@@ -45,12 +46,12 @@ public class FastRJavaUI {
             super.paint(g);
             PlotParams params = paramsSupplier.get();
             // The MAGIC happens HERE: we invoke R plotting code and pass it graphics object
-            showPlot.show((Graphics2D) g, getWidth(), getHeight(), params.clustersCount, params.xVar, params.yVar);
+            showPlot.execute((Graphics2D) g, getWidth(), getHeight(), params.clustersCount, params.xVar, params.yVar);
         }
     }
 
     //Create and set up the window -- this is standard Java/Swing
-    private static void createAndShowGUI(ShowPlot showPlot) {
+    private static void createAndShowGUI(Value showPlot) {
         JFrame frame = new JFrame("Hello World to R from Java");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(750, 500));
@@ -111,7 +112,7 @@ public class FastRJavaUI {
                 "   dev.off();" +
                 "   NULL;" +
                 "}";
-        ShowPlot showPlot = context.eval("R", src).asHostObject();
+        Value showPlot = context.eval("R", src);
         javax.swing.SwingUtilities.invokeLater(() -> createAndShowGUI(showPlot));
     }
 }
