@@ -4,4 +4,4 @@ if [ -z "$GRAALVM_DIR" ]; then
 fi
 mkdir -p bin
 cd src/main/java/
-$GRAALVM_DIR/bin/javac -cp $GRAALVM_DIR/lib/truffle/truffle-api.jar -d ../../../bin com/oracle/truffle/r/fastrjavaui/FastRJavaUI.java
+$GRAALVM_DIR/bin/javac -d ../../../bin com/oracle/truffle/r/fastrjavaui/FastRJavaUI.java
