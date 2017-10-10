@@ -29,7 +29,7 @@ the city's real and predicted temperature, such as
 
 ####Installation
 
-In order to run the demonstration, GraalVM 0.25+ must be installed. It can be
+In order to run the demonstration, the latest GraalVM must be installed. It can be
 downloaded from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
 
 Set the environment variable `GRAALVM_DIR` to the location of GraalVM distribution
