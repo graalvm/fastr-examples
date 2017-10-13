@@ -1,8 +1,6 @@
 #!/bin/bash
 
 CRAN_MIRROR=http://cran.us.r-project.org
-export NODE_STACK_SIZE=2000000
-
 if [ ! -d openweather ]; then
 	echo "Installing openweather gem..."
 	git clone https://github.com/lucasocon/openweather.git

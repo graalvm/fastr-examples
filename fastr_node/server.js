@@ -35,6 +35,6 @@ app.get('/lm/predict', function (req, res) {
 });
 
 app.use(express.static(__dirname + "/public"));
-app.listen(12836, function() {
-    console.log("Server listening on port 12836");
+app.listen(12837, function() {
+    console.log("Server listening on port 12837");
 });

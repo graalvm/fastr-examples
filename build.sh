@@ -1,8 +1,7 @@
 #!/bin/bash
 set -e
 
-./testWeatherPredictor.sh
-./stop.sh
+./testWebApps.sh
 
 cd fastr_javaui
 ./build.sh
