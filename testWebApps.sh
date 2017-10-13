@@ -3,16 +3,13 @@
 # Fail on any error
 set -e
 
-# Copy graalvm to the working dir
-#if [ ! -d graalvm ]; then
-#	echo "Copying graalvm to working directory..."
-#	mkdir graalvm
-#	cp -R $GRAALVM_DIR/* graalvm
-#fi
-# Override the GRAALVM_DIR variable
-#GRAALVM_DIR=`pwd`/graalvm
-#export GRAALVM_DIR
-
+function waitForServer {
+    while read line; do
+        if grep -q 'Server listening' <<< $line; then
+            break;
+        fi
+    done <&3
+}
 
 # ------------------
 # Weather preditor
@@ -20,11 +17,10 @@ set -e
 cd weather_predictor
 
 ./install.sh
-./run.sh &
+exec 3< <(./run.sh)
+waitForServer
 
-sleep 60
 echo "Testing Weather Predictor..."
-
 ./test.sh
 ../stop.sh
 
@@ -36,9 +32,9 @@ cd ..
 cd fastr_node
 
 ./install.sh
-./run.sh &
+exec 3< <(./run.sh)
+waitForServer
 
-sleep 60
 echo "Testing FastR Node.js example..."
 ./test.sh
 ../stop.sh
