@@ -2,7 +2,7 @@ library(lattice)
 
 plotkmeans <- function(x, y, clusters) {
   svg(width=10, height=8)
-  data <- kmeans(iris[, c(y, x)], clusters)
+  data <- kmeans(iris[, c(y, x)], as.integer(clusters))
   iris$cluster <- factor(data$cluster)
   print(xyplot(as.formula(paste0(y,'~',x)), data=iris, groups=cluster, pch=20, cex=3))
   grDevices:::svg.off()
