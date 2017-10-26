@@ -5,4 +5,5 @@ set -e
 
 cd fastr_javaui
 ./build.sh
+./test.sh
 cd ..
