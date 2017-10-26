@@ -33,17 +33,31 @@ public class FastRJavaUI {
     }
 
     static final class PlotJPanel extends JPanel {
-        private final Value showPlot;
         private final Supplier<PlotParams> paramsSupplier;
+        private Context context = null;
+        private Value showPlot = null;
 
-        PlotJPanel(Value showPlot, Supplier<PlotParams> paramsSupplier) {
-            this.showPlot = showPlot;
+        PlotJPanel(Supplier<PlotParams> paramsSupplier) {
             this.paramsSupplier = paramsSupplier;
         }
 
         @Override
         public void paint(Graphics g) {
             super.paint(g);
+            if (context == null) {
+                context = Context.create("R");
+                // This R function opens FastR graphics device passing it Graphics2D object,
+                // then it plots the graph and closes the device
+                String src = "library(grid); library(lattice); " +
+                    "function(g, w, h, clustersCount, x, y) { " +
+                    "   grDevices:::awt(w, h, g);" +
+                    "   iris$cluster <- factor(kmeans(iris[, c(y, x)], clustersCount)$cluster);" +
+                    "   print(xyplot(as.formula(paste0(y,'~',x)), data=iris, groups=cluster, pch=20, cex=3));" +
+                    "   dev.off();" +
+                    "   NULL;" +
+                    "}";
+                showPlot = context.eval("R", src);
+            }
             PlotParams params = paramsSupplier.get();
             // The MAGIC happens HERE: we invoke R plotting code and pass it graphics object
             showPlot.execute((Graphics2D) g, getWidth(), getHeight(), params.clustersCount, params.xVar, params.yVar);
@@ -51,7 +65,7 @@ public class FastRJavaUI {
     }
 
     //Create and set up the window -- this is standard Java/Swing
-    private static void createAndShowGUI(Value showPlot) {
+    private static void createAndShowGUI() {
         JFrame frame = new JFrame("Hello World to R from Java");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(750, 500));
@@ -63,7 +77,7 @@ public class FastRJavaUI {
         JComboBox<String> yAxisCombo = new JComboBox<>(variables);
         yAxisCombo.setSelectedIndex(1);
 
-        JPanel plot = new PlotJPanel(showPlot, () ->
+        JPanel plot = new PlotJPanel(() ->
                 new PlotParams(
                         (Integer) clustersCombo.getSelectedItem(),
                         (String) xAxisCombo.getSelectedItem(),
@@ -101,18 +115,6 @@ public class FastRJavaUI {
     }
 
     public static void main(String[] args) throws Exception {
-        Context context = Context.create("R");
-        // This R function opens FastR graphics device passing it Graphics2D object,
-        // then it plots the graph and closes the device
-        String src = "library(grid); library(lattice); " +
-                "function(g, w, h, clustersCount, x, y) { " +
-                "   grDevices:::awt(w, h, g);" +
-                "   iris$cluster <- factor(kmeans(iris[, c(y, x)], clustersCount)$cluster);" +
-                "   print(xyplot(as.formula(paste0(y,'~',x)), data=iris, groups=cluster, pch=20, cex=3));" +
-                "   dev.off();" +
-                "   NULL;" +
-                "}";
-        Value showPlot = context.eval("R", src);
-        javax.swing.SwingUtilities.invokeLater(() -> createAndShowGUI(showPlot));
+        javax.swing.SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 }
