@@ -15,6 +15,4 @@ while [ -h "$source" ] ; do
 done
 dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
-: ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
-
-${GRAALVM_DIR}/bin/java -cp ${dir}/bin com.oracle.truffle.r.fastrjavaui.FastRJavaUI
+rm -rf ${dir}/node_modules

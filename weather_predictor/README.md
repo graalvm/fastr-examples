@@ -33,7 +33,7 @@ In order to run the demonstration, the latest GraalVM must be installed. It can 
 downloaded from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
 
 Set the environment variable `GRAALVM_DIR` to the location of GraalVM distribution
-and run the `install.sh` script from the `graal-weather-predictor` directory.
+and run the `build.sh` script from the `graal-weather-predictor` directory.
 Typical problem is proxy set-up: verify that you have `http_proxy` and `https_proxy`
 variables set properly.
 
@@ -45,6 +45,6 @@ environment variable must be set to point to the GraalVM distribution.
 
 Open your browser at http://localhost:12836.
 
-Script `demo.sh` runs application without displaying exceptions to terminal. It is possible to pass in arguments to enable Chrome Inspector `--inspect` and `--inspect.Suspend=false` or monitoring Agent using `--agent`. E.g. `./demo.sh --inspect --inspect.Suspend=false --agent`
+Script `run.sh` runs application without displaying exceptions to terminal. It is possible to pass in arguments to enable Chrome Inspector `--inspect` and `--inspect.Suspend=false` or monitoring Agent using `--agent`. E.g. `./run.sh --inspect --inspect.Suspend=false --agent`
 
 Script `tools.sh` enables above mentioned tools and allows printing of exceptions to terminal.

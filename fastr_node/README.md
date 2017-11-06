@@ -8,7 +8,7 @@ In order to run the demonstration, the latest GraalVM must be installed. It can 
 downloaded from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
 
 Set the environment variable `GRAALVM_DIR` to the location of GraalVM distribution
-and run the `install.sh` script from the `fastr_node` directory.
+and run the `build.sh` script from the `fastr_node` directory.
 Typical problem is proxy set-up: verify that you have `http_proxy` and `https_proxy`
 variables set properly.
 

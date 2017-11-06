@@ -1,30 +1,25 @@
 graal-vm-release: {
   downloads: {
     GRAALVM_DIR: {
-      name: graalvm-release,
-      version: "0.28",
+      name: graalvm-release
+      version: "0.28"
       platformspecific: true
     }
   }
-  environment: {
-    GRAALVM_BIN: "$GRAALVM_DIR/bin/java"
-    HOST_VM: server,
-    HOST_VM_CONFIG: graal-vm,
-    OPEN_WEATHER_API_KEY: "dd7073d18e3085d0300b6678615d904d"
-  }
-  logs : [
-    "fastr_errors.log"
+  logs: [
+    fastr_errors.log
     "*/fastr_errors.log"
   ]
 }
 
 builds = [
   ${graal-vm-release} {
-    name: "weather_predictor_gate"
-    capabilities : [linux, amd64],
-    targets : [gate],
-    run : [
-      ["./build.sh"]
-    ],
+    name: gate-graalvm-examples-linux-amd64
+    capabilities: [linux, amd64]
+    targets: [gate]
+    run: [
+      [./build_all.sh]
+      [./test_all.sh]
+    ]
   }
 ]

@@ -2,5 +2,11 @@
 
 Run it with:
 ```
-$GRAALVM_DIR/bin/Rscript gameoflife.R
+${GRAALVM_DIR}/bin/Rscript gameoflife.R
+```
+
+or:
+
+```
+./run.sh
 ```
