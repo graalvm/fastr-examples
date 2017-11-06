@@ -1,12 +1,11 @@
 # A simple, straightforward implementation of "Conway's Game of Life"
 
-Run it with:
-```
-${GRAALVM_DIR}/bin/Rscript gameoflife.R
-```
+## Setup
 
-or:
+Download the latest GraalVM image from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
+Extract the archive and set the `GRAALVM_DIR` environment variable to point to the graalvm directory.
 
-```
-./run.sh
-```
+
+## Run
+
+Execute the `run.sh` script or `${GRAALVM_DIR}/bin/Rscript gameoflife.R`
