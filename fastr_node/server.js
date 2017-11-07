@@ -1,7 +1,7 @@
 fs = require('fs');
 
 // Load the R module
-var modelScript = fs.readFileSync("model.r", "utf8");
+var modelScript = fs.readFileSync(__dirname + "/model.r", "utf8");
 Interop.eval("application/x-r", modelScript);
 
 // Import the function exported from the R module
@@ -35,6 +35,12 @@ app.get('/lm/predict', function (req, res) {
 });
 
 app.use(express.static(__dirname + "/public"));
-app.listen(12837, function() {
-    console.log("Server listening on port 12837");
+var port = 12837;
+var server = app.listen(port, function() {
+    console.log("Server listening on http://localhost:" + port);
+});
+
+app.get('/exit', function(req, res) {
+    res.status(200).send('');
+    server.close();
 });

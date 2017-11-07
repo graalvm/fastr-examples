@@ -46,8 +46,9 @@ public class FastRJavaCmd {
         showPlot.execute(graphics, WIDTH, HEIGHT, 4, "Sepal.Width", "Sepal.Length");
 
         // Save the image to file
+        String dest = System.getProperty("fastrjavaui.dest", "test.png");
         try {
-            ImageIO.write(image, "png", new File("test.png"));
+            ImageIO.write(image, "png", new File(dest));
         } catch (IOException e) {
             e.printStackTrace();
         }

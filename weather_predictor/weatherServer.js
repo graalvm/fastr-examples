@@ -10,7 +10,7 @@ Interop.export('tempInCity', function(name) {
 
 // Load the R module
 console.log("Preparing weather model...");
-var weatherModelScript = fs.readFileSync("weatherModel.r", "utf8");
+var weatherModelScript = fs.readFileSync(__dirname + "/weatherModel.r", "utf8");
 Interop.eval("application/x-r", weatherModelScript);
 
 // Import the function exported from the R module
@@ -79,7 +79,13 @@ app.post('/update-tempratures', function(req, res) {
 
 app.get('/model-plot', (req, res) => res.send(plotModel(model)));
 
+var port = 12836;
 app.use(express.static(__dirname + "/public"));
-app.listen(12836, function() {
-    console.log("Server listening on port 12836");
+var server = app.listen(port, function() {
+    console.log("Server listening on http://localhost:" + port);
+});
+
+app.get('/exit', function(req, res) {
+    res.status(200).send('');
+    server.close();
 });
