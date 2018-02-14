@@ -6,3 +6,5 @@ weather_predictor/node_modules/
 weather_predictor/openweather/
 weather_predictor/rlang/
 weather_predictor/bin/
+fastr_rJava/RJavaBench.java
+fastr_rJava/RJavaBench.class
