@@ -19,3 +19,5 @@ ${dir}/weather_predictor/test.sh
 ${dir}/fastr_javaui/test.sh
 ${dir}/fastr_node/test.sh
 ${dir}/fastr_scalar/run.sh
+# rJava needs to be installed. See ${dir}/fastr_rJava/README.md
+${dir}/fastr_rJava/run.sh
