@@ -21,7 +21,7 @@ public class FastRJavaCmd {
     private static final int HEIGHT = 500;
 
     public static void main(String[] args) {
-        Context context = Context.create("R");
+        Context context = Context.newBuilder("R").allowAllAccess(true).build();
         // This R function opens FastR graphics device passing it Graphics2D object,
         // then it plots the graph and closes the device
         String src = "library(grid); library(lattice); " +
