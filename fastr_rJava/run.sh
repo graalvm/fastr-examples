@@ -17,4 +17,4 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
-exec ${GRAALVM_DIR}/bin/Rscript ${dir}/rJavaBench.R
+exec ${GRAALVM_DIR}/bin/Rscript --jvm ${dir}/rJavaBench.R
