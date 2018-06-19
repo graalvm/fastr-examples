@@ -11,6 +11,8 @@ module Weather
     name = Truffle::Interop.from_java_string(name)
     weather = Openweather2.get_weather(city: name, units: 'metric')
     weather.temperature
+  rescue
+    "Couldn't find actual temperature for city: #{name}; "
   end
 end
 

@@ -1,11 +1,16 @@
 fs = require('fs');
 
-const cityServiceType = Java.type('com.oracle.graalvm.demo.weather.CityService');
-var cityService = new cityServiceType();
+// Load the Ruby module
+console.log("Initializing Openweather");
+var weatherInitScript = fs.readFileSync("weatherInit.rb", "utf8");
+Interop.eval("application/x-ruby", weatherInitScript);
+
+// Ruby overrides Node.js signal handler, we override it back
+process.on('SIGINT', function() { process.exit(0); });
 
 Weather = Interop.import('weather')
 Interop.export('tempInCity', function(name) {
-	return cityService.findByName(name).getTemperature();
+	return Weather.temperature_in_city(name);
 });
 
 // Load the R module
@@ -19,10 +24,14 @@ predictTemp = Interop.import('do_predict');
 plotModel = Interop.import('plotModel');
 isCity = Interop.import('isCity');
 
+const cityServiceType = Java.type('com.oracle.graalvm.demo.weather.CityService');
+var cityService = new cityServiceType();
+
 var updateTemperatures = function() {
     let cities = cityService.getAll();
     for (var i = 0; i < cities.length; i++) {
         console.log("Updating temperature of " + cities[i].getName());
+        cityService.updateTemperature(cities[i].getId(), Weather.temperature_in_city(cities[i].getName()));
     }
 }
 
@@ -61,7 +70,7 @@ app.get('/cities', function (req, res) {
 app.get('/predict/:city', function (req, res) {
     var city = cityService.findByName(req.params.city);
     if (city) {
-        res.send({predicted: predictTemp(model, city.getLatitude()), real: city.getTemperature()});
+        res.send({predicted: predictTemp(model, city.getLatitude()), real: city.getTemperature(), loaded: Weather.temperature_in_city(city.getName())});
     } else {
         res.status(404).send('City not found');
     }
