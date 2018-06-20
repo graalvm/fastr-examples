@@ -16,4 +16,5 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
 # Run demo with tools enabled and with exceptions being printed to command line
-${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Xss2m --jvm.Dtruffle.js.NashornJavaInterop=true --jvm.classpath=${dir}/bin --ruby.load_paths=${dir}/openweather/lib,${dir} --polyglot --inspect --inspect.Suspend=false --agent ${dir}/weatherServer.js
+${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Xss2m --jvm.Dtruffle.js.NashornJavaInterop=true --polyglot --inspect --inspect.Suspend=false ${dir}/server.js
+
