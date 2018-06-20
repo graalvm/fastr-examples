@@ -77,6 +77,7 @@ $(document).ready(function() {
         $.get('http://localhost:12836/predict/' + $('#cityName').val(), function(data) {
             $('#result-predicted').text(data.predicted);
             $('#result-real').text(data.real);
+            $('#result-loaded').text(data.loaded);
             $('#prediction').show();
         }).fail(function() {
             $('#not-found').show();
