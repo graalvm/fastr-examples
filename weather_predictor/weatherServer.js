@@ -2,7 +2,7 @@ fs = require('fs');
 
 // Load the Ruby module
 console.log("Initializing Openweather");
-var weatherInitScript = fs.readFileSync("weatherInit.rb", "utf8");
+var weatherInitScript = fs.readFileSync(__dirname + "/weatherInit.rb", "utf8");
 Interop.eval("application/x-ruby", weatherInitScript);
 
 // Ruby overrides Node.js signal handler, we override it back
