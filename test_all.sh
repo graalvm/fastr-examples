@@ -1,6 +1,6 @@
 #!/bin/bash
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved. 
-# This file is made available under version 3 of the GNU General Public License. 
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# This file is made available under version 3 of the GNU General Public License.
 
 set -e
 set -o xtrace
@@ -18,9 +18,12 @@ while [ -h "$source" ] ; do
 done
 dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
+set -x
+
 ${dir}/weather_predictor/test.sh
 ${dir}/fastr_javaui/test.sh
 ${dir}/fastr_node/test.sh
 ${dir}/fastr_scalar/run.sh
 ${dir}/r_java_embedding/test.sh
 ${dir}/r_java_bench/test.sh
+${dir}/shared_domain_logic/test.sh
