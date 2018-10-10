@@ -3,6 +3,7 @@
 # This file is made available under version 3 of the GNU General Public License. 
 
 set -e
+set -o xtrace
 
 # Resolve the location of this script
 source="${BASH_SOURCE[0]}"
@@ -21,3 +22,5 @@ ${dir}/weather_predictor/test.sh
 ${dir}/fastr_javaui/test.sh
 ${dir}/fastr_node/test.sh
 ${dir}/fastr_scalar/run.sh
+${dir}/r_java_embedding/test.sh
+${dir}/r_java_bench/test.sh

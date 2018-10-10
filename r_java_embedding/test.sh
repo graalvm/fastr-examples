@@ -20,14 +20,4 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
-rm -f ${dir}/test.png
-echo Testing GraalVM fastr_javaui example
-if ! ${GRAALVM_DIR}/bin/java -cp ${dir}/bin -Dfastrjavaui.dest=${dir}/test.png com.oracle.truffle.r.fastrjavaui.FastRJavaCmd | grep "SUCCESS" > /dev/null; then
-  echo "expected output not found"
-  exit 1
-fi
-if [ ! -f ${dir}/test.png ]; then
-  echo "expected file not generated"
-  exit 1
-fi
-echo DONE
+diff <(${GRAALVM_DIR}/bin/java -cp ${dir}/bin com.oracle.truffle.r.fastrembedding.FastREmbeddingDemo) ${dir}/expected.out
