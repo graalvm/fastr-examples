@@ -1,10 +1,10 @@
 # A simple, straightforward implementation of "Conway's Game of Life"
 
+![Screenshot](screen.png)
+
 ## Setup
 
-Download the latest GraalVM image from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
-Extract the archive and set the `GRAALVM_DIR` environment variable to point to the graalvm directory.
-
+Follow the instructions from the top level [README](../README.md) to install and setup GraalVM.
 
 ## Run
 

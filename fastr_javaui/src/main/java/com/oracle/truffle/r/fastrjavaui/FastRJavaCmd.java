@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+ * This file is made available under version 3 of the GNU General Public License.
+ */
+
 package com.oracle.truffle.r.fastrjavaui;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;

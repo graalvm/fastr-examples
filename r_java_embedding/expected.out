@@ -1,0 +1,21 @@
+The whole data frame printed in R:
+  id    name language
+1  1 Florian   Python
+2  2   Lukas        R
+3  3    Mila     Java
+4  4   Paley      Coq
+5  5  Stepan       C#
+6  6   Tomas     Java
+7  7  Zbynek    Scala
+---------
+
+Filter out users with ID>2:
+  id   name language
+3  3   Mila     Java
+4  4  Paley      Coq
+5  5 Stepan       C#
+6  6  Tomas     Java
+7  7 Zbynek    Scala
+---------
+
+How many users like Java: 2 
