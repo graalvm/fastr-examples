@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# This file is made available under version 3 of the GNU General Public License.
+
 
 set -e
 
@@ -17,4 +20,6 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
-exec ${GRAALVM_DIR}/bin/Rscript --jvm ${dir}/rJavaBench.R
+echo "Compiling the Java sources"
+mkdir -p ${dir}/bin
+${GRAALVM_DIR}/bin/javac -d ${dir}/bin ${dir}/src/main/java/com/oracle/truffle/r/fastrembedding/*.java

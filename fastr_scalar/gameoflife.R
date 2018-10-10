@@ -1,3 +1,5 @@
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# This file is made available under version 3 of the GNU General Public License.
 
 # A simple, straightforward implementation of "Conway's Game of Life"
 # lukas.stadler@oracle.com

@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# This file is made available under version 3 of the GNU General Public License.
 
 set -e
 
@@ -18,3 +20,4 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 ${dir}/weather_predictor/build.sh
 ${dir}/fastr_javaui/build.sh
 ${dir}/fastr_node/build.sh
+${dir}/r_java_embedding/build.sh

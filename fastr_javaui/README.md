@@ -1,3 +1,6 @@
+
+![Screenshot](screen.png)
+
 # R's graphical output in Java based desktop application
 
 This demo shows an interactive Java based desktop application that displays k-means  clustering on the iris data set.
@@ -10,10 +13,8 @@ Under the hood, FastR emulates the grid and grDevices packages purely in Java an
 
 ## Setup
 
-Download the latest GraalVM image from the [Oracle Technology Network](http://www.oracle.com/technetwork/oracle-labs/program-languages/downloads/index.html).
-Extract the archive and set the `GRAALVM_DIR` environment variable to point to the graalvm directory.
-
-Then, execute the `build.sh` script.
+Follow the instructions from the top level [README](../README.md) to install and setup GraalVM
+and then execute the `build.sh` script.
 
 
 ## Run

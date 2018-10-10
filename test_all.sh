@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved. 
+# This file is made available under version 3 of the GNU General Public License. 
 
 set -e
 
@@ -19,5 +21,3 @@ ${dir}/weather_predictor/test.sh
 ${dir}/fastr_javaui/test.sh
 ${dir}/fastr_node/test.sh
 ${dir}/fastr_scalar/run.sh
-# rJava needs to be installed. See ${dir}/fastr_rJava/README.md
-${dir}/fastr_rJava/run.sh

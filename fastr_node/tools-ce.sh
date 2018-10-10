@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# This file is made available under version 3 of the GNU General Public License.
+
 
 # Resolve the location of this script
 source="${BASH_SOURCE[0]}"
