@@ -20,7 +20,7 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
-exec 3< <(${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Dtruffle.js.NashornJavaInterop=true --jvm.classpath=${dir}/bin --ruby.load_paths=${dir}/openweather/lib,${dir} --polyglot ${dir}/weatherServer.js)
+exec 3< <(${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm.classpath=${dir}/bin --ruby.load_paths=${dir}/openweather/lib,${dir} --polyglot ${dir}/weatherServer.js)
 
 while read line; do
   if grep -q 'Server listening' <<< $line; then

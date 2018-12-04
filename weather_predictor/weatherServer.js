@@ -8,26 +8,26 @@ fs = require('fs');
 // Load the Ruby module
 console.log("Initializing Openweather");
 var weatherInitScript = fs.readFileSync(__dirname + "/weatherInit.rb", "utf8");
-Interop.eval("application/x-ruby", weatherInitScript);
+Polyglot.eval("application/x-ruby", weatherInitScript);
 
 // Ruby overrides Node.js signal handler, we override it back
 process.on('SIGINT', function() { process.exit(0); });
 
-Weather = Interop.import('weather')
-Interop.export('tempInCity', function(name) {
+Weather = Polyglot.import('weather')
+Polyglot.export('tempInCity', function(name) {
 	return Weather.temperature_in_city(name);
 });
 
 // Load the R module
 console.log("Preparing weather model...");
 var weatherModelScript = fs.readFileSync(__dirname + "/weatherModel.r", "utf8");
-Interop.eval("application/x-r", weatherModelScript);
+Polyglot.eval("application/x-r", weatherModelScript);
 
 // Import the function exported from the R module
-createModel = Interop.import('createModel');
-predictTemp = Interop.import('do_predict');
-plotModel = Interop.import('plotModel');
-isCity = Interop.import('isCity');
+createModel = Polyglot.import('createModel');
+predictTemp = Polyglot.import('do_predict');
+plotModel = Polyglot.import('plotModel');
+isCity = Polyglot.import('isCity');
 
 const cityServiceType = Java.type('com.oracle.graalvm.demo.weather.CityService');
 var cityService = new cityServiceType();
@@ -57,7 +57,7 @@ var express = require('express');
 var app = express();
 
 app.get('/cities', function (req, res) {
-    let cities = cityService.getAllPaged(req.query.skip, req.query.limit);
+    let cities = cityService.getAllPaged(parseInt(req.query.skip), parseInt(req.query.limit));
     let jsCities = [];
     for(let i = 0; i < cities.length; ++i) {
         jsCities.push({

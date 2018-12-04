@@ -21,4 +21,4 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
 # Runs the demo without any tools enabled and printing all exceptions to terminal
-${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Xss2m --jvm.Dtruffle.js.NashornJavaInterop=true --polyglot ${dir}/server.js
+${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Xss2m --polyglot ${dir}/server.js
