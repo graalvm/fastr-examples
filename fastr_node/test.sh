@@ -20,7 +20,7 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
-exec 3< <(${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Dtruffle.js.NashornJavaInterop=true --polyglot ${dir}/server.js)
+exec 3< <(${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --polyglot ${dir}/server.js)
 
 while read line; do
   if grep -q 'Server listening' <<< $line; then
