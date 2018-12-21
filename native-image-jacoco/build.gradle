@@ -1,0 +1,107 @@
+group 'org.jacoco'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    jacoco
+    jacocoRuntime
+    graalSdk
+}
+
+def jacocoVersion = '0.8.2'
+def executionDataLocation = buildDir.path + '/output'
+
+dependencies {
+    jacoco group: 'org.jacoco', name: 'org.jacoco.ant', version: jacocoVersion
+    jacocoRuntime group: 'org.jacoco', name: 'org.jacoco.agent', version: jacocoVersion
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile(files("$System.env.GRAALVM_HOME" + "/jre/lib/boot/graal-sdk.jar"))
+}
+
+task instrument(dependsOn: ['classes', 'extractAgent']) {
+    ext.outputDir = buildDir.path + '/classes-instrumented'
+    doLast {
+        ant.taskdef(name: 'instrument',
+                classname: 'org.jacoco.ant.InstrumentTask',
+                classpath: configurations.jacoco.asPath)
+        ant.instrument(destdir: outputDir) {
+            fileset(dir: sourceSets.main.output.getClassesDirs().files.getAt(0))
+        }
+    }
+}
+
+task report {
+    doLast {
+        ant.taskdef(name: 'report',
+                classname: 'org.jacoco.ant.ReportTask',
+                classpath: configurations.jacoco.asPath)
+        ant.report() {
+            executiondata {
+                ant.file(file: executionDataLocation + '/jacoco.exec')
+            }
+            structure(name: 'Example') {
+                classfiles {
+                    fileset(dir: sourceSets.main.output.getClassesDirs().files.getAt(0))
+                }
+                sourcefiles {
+                    fileset(dir: 'src/main/java')
+                }
+            }
+            html(destdir: buildDir.path + '/reports/jacoco')
+        }
+    }
+}
+
+task extractAgent(type: Copy) {
+    from {
+        zipTree(configurations.jacocoRuntime.getFiles().stream().filter({ File file -> file.path.contains("jar") })
+                .findFirst().get())
+    }
+    ext.outputDir = file("${buildDir}/lib/jacocoAgent")
+    into outputDir
+}
+
+
+task compileTest(type: Exec) {
+    executable = "bash"
+    args "-c", "gcc native_src/hello.c -o build/hello -Lbuild/instrumented -lhellojacoco -Ibuild/instrumented"
+}
+
+task runTestWithInstrumentation(type: Exec) {
+    executable "bash"
+    args "-c", "(LD_LIBRARY_PATH=./build/instrumented ./build/hello && mkdir -p build/output && mv jacoco.exec $executionDataLocation)"
+}
+
+task runTest(type: Exec) {
+    executable = "bash"
+    args "-c", "LD_LIBRARY_PATH=./build/non-instrumented ./build/hello"
+}
+
+String aotInstrumentedCommand() {
+    def classpath = ":${extractAgent.outputDir}/jacocoagent.jar".concat(":${instrument.outputDir}")
+    return "$System.env.GRAALVM_HOME/bin/native-image --shared --delay-class-initialization-to-runtime=org.jacoco.agent.rt.internal_28bab1d.Offline -H:Path=./build/instrumented/ -cp ${classpath} -H:Name=libhellojacoco"
+}
+
+task aotInstrumentedImage(type: Exec, dependsOn: ['instrument']) {
+    doFirst { mkdir "./build/instrumented/" }
+    executable = "bash"
+    args "-c", aotInstrumentedCommand()
+}
+
+String aotCommand() {
+    def classpath = buildDir.path + '/classes/java/main'
+    return "$System.env.GRAALVM_HOME/bin/native-image --shared -H:Path=./build/non-instrumented/ -cp ${classpath} -H:Name=libhellojacoco"
+}
+
+task aotImage(type: Exec, dependsOn: ['classes']) {
+    doFirst { mkdir "./build/non-instrumented/" }
+    executable = "bash"
+    args "-c", aotCommand()
+}
