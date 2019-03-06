@@ -12,6 +12,8 @@ if (!any(R.version$engine == "FastR")) {
 # Compile the Java class that we will use in the benchmark
 # Note: you need to have $JAVA_HOME variable defined in the environment
 source("java.R")
+# add the benchmark class to classpath
+java.addToClasspath(getwd())
 
 # the object that we are going to use for the benchmark,
 # syntactically this is the only difference from the rJava example
