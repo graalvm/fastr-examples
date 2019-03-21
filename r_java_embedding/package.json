@@ -1,0 +1,14 @@
+{
+  "name": "FastRJ",
+  "version": "1.0.0",
+  "description": "Embedding FastR into Java demo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GraalVM team",
+  "license": "Universal Permissive License (UPL)",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
