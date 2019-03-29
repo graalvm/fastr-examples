@@ -20,4 +20,4 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 # Completely silent execution not reporting any exceptions/errors from Graal
 # It is possible to specify --inspect and --inspect.Suspend=false and/or --agent as arguments
-${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --jvm.Xss2m --jvm.Dgraal.CompilationFailureAction=Silent --jvm.Djava.util.logging.config.file=${dir}/java_options --jvm.classpath=${dir}/bin --ruby.load_paths=${dir}/openweather/lib,${dir} --polyglot "$@" ${dir}/weatherServer.js
+${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --vm.Xss2m --vm.Dgraal.CompilationFailureAction=Silent --vm.Djava.util.logging.config.file=${dir}/java_options --vm.classpath=${dir}/bin --ruby.load-paths=${dir}/openweather/lib,${dir} --polyglot "$@" ${dir}/weatherServer.js
