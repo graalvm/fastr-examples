@@ -21,5 +21,5 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 : ${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}
 
 cd ${dir}
-${GRAALVM_DIR}/bin/Rscript test.R
+${GRAALVM_DIR}/bin/Rscript --jvm test.R
 cd -
