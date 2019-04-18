@@ -27,7 +27,6 @@ Polyglot.eval("application/x-r", weatherModelScript);
 createModel = Polyglot.import('createModel');
 predictTemp = Polyglot.import('do_predict');
 plotModel = Polyglot.import('plotModel');
-isCity = Polyglot.import('isCity');
 
 const cityServiceType = Java.type('com.oracle.graalvm.demo.weather.CityService');
 var cityService = new cityServiceType();
