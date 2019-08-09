@@ -19,15 +19,15 @@ RUN sed -i "s/deb.debian.org/cdn-fastly.deb.debian.org/" /etc/apt/sources.list \
     && ldconfig
 
 WORKDIR /jdk
-RUN wget http://graal.us.oracle.com/slavefiles2/oraclejdk/oraclejdk-8-jvmci-latest-linux-amd64.tar.gz \
-	&& tar -xzf oraclejdk-8-jvmci-latest-linux-amd64.tar.gz
+RUN wget https://github.com/graalvm/openjdk8-jvmci-builder/releases/download/jvmci-19.2-b02/openjdk-8u222-jvmci-19.2-b02-linux-amd64.tar.gz \
+	&& tar -xzf openjdk-8u222-jvmci-19.2-b02-linux-amd64.tar.gz
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/
 
 ENV FASTR_HOME=/fastr
 ENV MX_HOME=/usr/mx
 ENV PATH=$MX_HOME:/graal/sulong/mxbuild/SULONG_LLVM_ORG/bin:$PATH
-ENV JAVA_HOME=/jdk/oraclejdk1.8.0_221-jvmci-19.2-b02
+ENV JAVA_HOME=/jdk/openjdk1.8.0_222-jvmci-19.2-b02
 
 # See https://github.com/oracle/graal/blob/master/compiler/src/org.graalvm.compiler.hotspot/src/org/graalvm/compiler/hotspot/JVMCIVersionCheck.java
 #ENV JVMCI_VERSION_CHECK=ignore
