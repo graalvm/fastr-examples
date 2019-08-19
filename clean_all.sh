@@ -17,6 +17,8 @@ while [ -h "$source" ] ; do
 done
 dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
+set -x
+
 ${dir}/weather_predictor/clean.sh
 ${dir}/fastr_javaui/clean.sh
 ${dir}/fastr_node/clean.sh

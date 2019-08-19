@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>People demo</title>
+    <style>
+        .error {
+            color: crimson;
+        }
+
+        table, input, button, h3 {
+            margin: 2px 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: solid 1px silver;
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- place the custom tag anywhere inside the body -->
+<people></people>
+
+<p><a href="/exit">Quit the application.</a></p>
+
+<script src="person.js"></script>
+<script type="riot/tag" src="people.html"></script>
+<script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot+compiler.min.js"></script>
+<script>riot.mount('people')</script>
+</body>
+</html>

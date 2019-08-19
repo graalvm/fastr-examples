@@ -1,0 +1,85 @@
+<people>
+    <h3>People</h3>
+    <table>
+        <thead>
+        <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Age</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr each={ people }>
+            <td class={ isInvalid() ?
+            'error' : '' }>{ firstName }</td>
+            <td class={ isInvalid() ?
+            'error' : '' }>{ lastName }</td>
+            <td class={ isInvalid() ?
+            'error' : '' }>{ age }</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>New person form</h3>
+
+    <form onsubmit={ add }>
+        <input type="text" ref="firstName" onkeyup={ edit } placeholder="first name">
+        <span class="error">{ this.person.errors['firstName'] }</span>
+        </br>
+        <input type="text" ref="lastName" onkeyup={ edit } placeholder="last name">
+        <span class="error">{ this.person.errors['lastName'] }</span>
+        </br>
+        <input type="number" ref="age" onkeyup={ edit } placeholder="age">
+        <span class="error">{ this.person.errors['age'] }</span>
+        </br>
+        <button disabled={ person.isInvalid() }>Add person</button>
+        <button disabled={ !person.isInvalid() }>Add invalid person</button>
+    </form>
+
+    <script>
+        this.people = [];
+        this.person = new Person('', '', '');
+
+        this.edit = function (e) {
+            let attrs = {};
+            attrs[e.target.attributes.ref.value] = e.target.value;
+            this.person = this.person.update(attrs);
+        };
+
+        this.add = function (e) {
+            console.log(this.person);
+            fetch('/person.json', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.person)
+            });
+
+            if (!this.person.isInvalid()) {
+                this.people.push(this.person);
+            }
+            this.refs.firstName.value = this.refs.lastName.value = this.refs.age.value = '';
+            this.person = new Person('', '', '');
+
+            e.preventDefault()
+        };
+
+        let that = this;
+        fetch('/people.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                that.people = myJson.map(o => Person.fromObject(o));
+                that.update()
+            });
+    </script>
+
+    <style>
+        :scope {
+            font-family: Calibri, sans-serif;
+        }
+    </style>
+</people>
