@@ -20,8 +20,7 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
 set -x
 
-# Disabled until GR-18108 is fixed
-# ${dir}/weather_predictor/test.sh
+${dir}/weather_predictor/test.sh
 ${dir}/fastr_javaui/test.sh
 ${dir}/fastr_node/test.sh
 ${dir}/fastr_scalar/run.sh
