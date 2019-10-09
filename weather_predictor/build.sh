@@ -28,7 +28,7 @@ fi
 
 # Install expressjs
 echo "Running 'npm install'"
-${GRAALVM_DIR}/bin/npm --prefix ${dir} install ${dir}
+${GRAALVM_DIR}/bin/npm --jvm --prefix ${dir} install ${dir}
 
 echo "Compiling the Java sources"
 mkdir -p ${dir}/bin
