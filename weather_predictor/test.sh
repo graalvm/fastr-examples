@@ -23,6 +23,7 @@ dir="$( cd -P "$( dirname "$source" )" && pwd )"
 exec 3< <(${GRAALVM_DIR}/bin/node ${GRAALVM_ADDITIONAL_ARGS} --jvm --vm.classpath=${dir}/bin --ruby.load-paths=${dir}/openweather/lib,${dir} --polyglot ${dir}/weatherServer.js)
 
 while read line; do
+  echo "$line"
   if grep -q 'Server listening' <<< $line; then
     break
   fi
@@ -43,7 +44,11 @@ function test() {
   if ! echo "$response" | grep "$3" 2>&1 >/dev/null; then
     echo "ERROR"
     echo "$response"
+    echo
     stop
+    while read line; do
+      echo "$line"
+    done <&3
     exit 1
   fi
 }
@@ -56,3 +61,7 @@ test "getting svg visualization" "model-plot" "<svg"
 test "terminating server" "exit" "200 OK"
 
 echo -e "\nDONE"
+
+while read line; do
+  echo "$line"
+done <&3
