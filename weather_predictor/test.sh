@@ -3,7 +3,6 @@
 # This file is made available under version 3 of the GNU General Public License.
 
 set -e
-set -o xtrace
 
 # Resolve the location of this script
 source="${BASH_SOURCE[0]}"
