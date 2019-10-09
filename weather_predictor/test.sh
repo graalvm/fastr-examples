@@ -39,8 +39,10 @@ function stop() {
 # $3 validation string
 function test() {
   echo "$1"
-  if ! curl -s --include --noproxy localhost --request GET http://localhost:${port}/$2 | grep "$3" >/dev/null; then
+  response=`curl -s --include --noproxy localhost --request GET http://localhost:${port}/$2 2>&1`
+  if ! echo "$response" | grep "$3" 2>&1 >/dev/null; then
     echo "ERROR"
+    echo "$response"
     stop
     exit 1
   fi
