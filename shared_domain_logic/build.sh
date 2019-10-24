@@ -19,8 +19,4 @@ set -x
 
 : "${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}"
 
-gem_path="${GRAALVM_DIR}/jre/languages/ruby/bin/gem"
-if [ ! -f "$gem_path" ]; then
-  gem_path="${GRAALVM_DIR}/languages/ruby/bin/gem"
-fi
-"$gem_path" install sinatra --version 2.0.5 --no-document
+"${GRAALVM_DIR}/bin/gem" install sinatra --version 2.0.5 --no-document
