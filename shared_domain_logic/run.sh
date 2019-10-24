@@ -23,4 +23,4 @@ echo
 
 set -x
 
-"${GRAALVM_DIR}/jre/languages/ruby/bin/ruby" --jvm --polyglot --experimental-options --ruby.single-threaded=true "${dir}/app.rb"
+"${GRAALVM_DIR}/bin/ruby" --jvm --polyglot --experimental-options --ruby.single-threaded=true "${dir}/app.rb"
