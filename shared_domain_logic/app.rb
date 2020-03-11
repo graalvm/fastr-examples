@@ -42,7 +42,7 @@ class PolyglotApp < Sinatra::Base
     request.body.rewind # in case someone already read it
     person = JSON.parse request.body.read
 
-    js_person            = JsPerson.fromObject OpenStruct.new person
+    js_person = JsPerson.fromObject Truffle::Interop.hash_keys_as_members(person)
     js_person_is_invalid = js_person.isInvalid()
     if js_person_is_invalid
       [403, 'Invalid user.']
@@ -71,4 +71,3 @@ class PolyglotApp < Sinatra::Base
 end
 
 PolyglotApp.run!
-
