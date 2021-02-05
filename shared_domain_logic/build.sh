@@ -19,4 +19,4 @@ set -x
 
 : "${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}"
 
-"${GRAALVM_DIR}/bin/gem" install sinatra --version 2.0.5 --no-document
+(cd "$dir" && "${GRAALVM_DIR}/bin/bundle" install)
