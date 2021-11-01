@@ -127,11 +127,12 @@ module WEBrick
     def timeout(seconds, exception = Timeout::Error)
       return yield
     end
+    module_function :timeout
   end
 end
 
 module Timeout
-  def timeout(sec, exception = Error)
+  def timeout(sec, exception = Timeout::Error)
     yield sec
   end
   module_function :timeout
