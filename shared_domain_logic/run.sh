@@ -17,7 +17,7 @@ dir="$(cd -P "$(dirname "$source")" && pwd)"
 
 : "${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}"
 
-echo "Go to localhost:4567"
+echo "Go to http://localhost:4567"
 echo "Quit the application by following the link at the bottom of the page"
 echo
 
