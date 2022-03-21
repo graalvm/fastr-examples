@@ -25,13 +25,7 @@ It can be downloaded from the [GraalVM homepage](http://www.graalvm.org/download
 The examples work on both the Community and Enterprise edition of GraalVM.
 
 Once downloaded, extract the archive, set the `GRAALVM_DIR` environment variable to point to the graalvm directory, 
-and install additional languages using following commands:
-
-```
-$GRAALVM_DIR/bin/gu install R
-$GRAALVM_DIR/bin/gu install python
-$GRAALVM_DIR/bin/gu install ruby
-```
+and install additional languages using [`./install_components.sh`](install_components.sh).
 
 ## Further information
 
