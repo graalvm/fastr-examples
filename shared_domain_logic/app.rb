@@ -1,6 +1,5 @@
 require 'pp'
 require 'sinatra/base'
-require_relative 'single_threaded'
 
 # noinspection RubyConstantNamingConvention,RubyParenthesesAfterMethodCallInspection,RubyUnlessWithElseInspection
 class PolyglotApp < Sinatra::Base
@@ -16,9 +15,9 @@ class PolyglotApp < Sinatra::Base
     PEOPLE_DB.push JsPerson.new('John', 'Doe', 50)
   end
 
-  Polyglot.eval_file('js',
-                     File.join(File.dirname(__FILE__), 'public', 'person.js'))
-  JsPerson = Polyglot.eval('js', 'Person')
+  JS = Polyglot::InnerContext.new
+  JS.eval('js', 'file => load(file)').call("#{__dir__}/public/person.js")
+  JsPerson = JS.eval('js', 'Person')
   initialize_db
 
   def js_person_as_hash(js_user)
