@@ -38,5 +38,3 @@ Person.prototype.update = function (attributes) {
 Person.fromObject = function (object) {
     return new Person(object['firstName'], object['lastName'], object['age'])
 };
-
-

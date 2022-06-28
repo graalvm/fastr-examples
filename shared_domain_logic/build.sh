@@ -19,4 +19,8 @@ set -x
 
 : "${GRAALVM_DIR?"GRAALVM_DIR must point to a GraalVM image"}"
 
+if ! ${GRAALVM_DIR}/bin/gu list | grep '^js '; then
+  ${GRAALVM_DIR}/bin/gu install js
+fi
+
 (cd "$dir" && "${GRAALVM_DIR}/bin/bundle" install)

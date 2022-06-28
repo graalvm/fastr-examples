@@ -25,13 +25,13 @@
     <form onsubmit={ add }>
         <input type="text" ref="firstName" onkeyup={ edit } placeholder="first name">
         <span class="error">{ this.person.errors['firstName'] }</span>
-        </br>
+        <br/>
         <input type="text" ref="lastName" onkeyup={ edit } placeholder="last name">
         <span class="error">{ this.person.errors['lastName'] }</span>
-        </br>
+        <br/>
         <input type="number" ref="age" onkeyup={ edit } placeholder="age">
         <span class="error">{ this.person.errors['age'] }</span>
-        </br>
+        <br/>
         <button disabled={ person.isInvalid() }>Add person</button>
         <button disabled={ !person.isInvalid() }>Add invalid person</button>
     </form>
