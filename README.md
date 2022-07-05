@@ -3,7 +3,7 @@
 A collection of examples and use-cases for the GraalVM and FastR.
 
 [GraalVM](http://graalvm.org) is a universal virtual machine for running applications written in JavaScript, 
-Python 3, Ruby, R, JVM-based languages like Java, Scala, Kotlin, and LLVM-based languages 
+Python 3, Ruby, R, JVM-based languages like Java, Scala, Kotlin, Clojure and LLVM-based languages 
 such as C and C++.
 
 FastR is a GraalVM based implementation of the R programming language, that provides significant improvements in the performance of R code,
